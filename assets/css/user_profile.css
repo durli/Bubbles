@@ -1,0 +1,5 @@
+body {
+  background-color: lightblue; }
+  body #profile-info {
+    margin-left: 10px;
+    font-size: 1.1rem; }

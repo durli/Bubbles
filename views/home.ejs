@@ -1,0 +1,71 @@
+
+<!-- <h1>
+   <%= title %>
+</h1> -->
+
+<!-- <%if(locals.user){%>
+    <h3>Your High Score: </h3>
+    <%for(game of games){%>
+        <%if(game.user.id == locals.user.id){%>
+            <div>
+                <%=game.user.name%>: <%=game.score%>
+            </div>
+        <%}%>
+    <%}%>
+<%}%> -->
+
+
+
+<section>
+
+    <div id="game-area">
+        <div id="game-screen">
+            <%- include('_game'); %>
+            <button id="restart">Restart</button>
+        </div>
+
+        <div id="leader-board">
+            <h4>Leader Board</h4>
+            <table>
+                <tr>
+                <th>User</th>
+                <th>High Score</th>
+                </tr>
+
+                <%games.sort(function(g1, g2){return g2.score - g1.score});%>
+
+                <% for(game of games){ %>
+                    
+                    <tr>
+                        <td><%= game.user.name %></td>
+                        <td><%= game.score %></td>
+                    </tr>
+                    
+                <%} %>
+            </table>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+
+    <% if(locals.user){ %>
+            console.log("hello there");
+            function saveScore(score){
+                console.log("Bye everyone...");
+                // Create a Post request in order to save 'score' into the database.
+                $.post("/games/create", {score: parseInt(score)}, function(){
+                    alert("Score saved.")
+                });
+            }
+
+            function fetchScore(){
+                <%for(game of games){%>
+                    <%if(game.user.id == locals.user.id){%>
+                        maxScore = <%=game.score%>;
+                    <%}%>
+                <%}%>
+            }
+    <% } %>
+</script>
