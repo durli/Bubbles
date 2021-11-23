@@ -41,13 +41,14 @@ module.exports.create = function (req, res) {
     User.findOne({ email: req.body.email }, function (err, user) {
         if (err) { console.log('error in finding user in signing up'); return; }
 
+        // If user is new
         if (!user) {
             User.create(req.body, function (err, user) {
                 if (err) { console.log('error in creating user while signing up'); return; }
 
                 return res.redirect('/users/sign-in');
             })
-        } else {
+        } else {    // If user already existed
             return res.redirect('back');
         }
 

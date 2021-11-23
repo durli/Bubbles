@@ -6,7 +6,7 @@
 // }
 var maxScore = 0;
 
-fetchScore();   //fetching maxScore from the database. Calling function in home.ejs
+fetchScore();   //fetching maxScore currently stored in the database. Calling function in home.ejs
 console.log("maxScore = ", maxScore);
 
 // const bubblePop1 = document.createElement('div');
