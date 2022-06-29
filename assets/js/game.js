@@ -108,9 +108,9 @@ class Player {
         ctx.translate(this.x, this.y);
         ctx.rotate(this.angle); // for making the fish image rotate
 
-        if (this.x >= mouse.x) {
+        if (this.x >= mouse.x) {    //It means you have to move to the left direction.
             ctx.drawImage(playerLeft, this.frameX * this.spriteWidth, this.frameY * this.spriteHeight, this.spriteWidth, this.spriteHeight, 0 - 60, 0 - 45, this.spriteWidth / 1.2, this.spriteHeight / 1.1);
-        } else {
+        } else {    // It means you have to move to the right direction.
             ctx.drawImage(playerRight, this.frameX * this.spriteWidth, this.frameY * this.spriteHeight, this.spriteWidth, this.spriteHeight, 0 - 60, 0 - 45, this.spriteWidth / 1.2, this.spriteHeight / 1.1);
         }
 
@@ -239,13 +239,13 @@ const BG = {
 
 function handleBackground() {
     BG.x1 -= gameSpeed;    // keep moving the background from right-to-left
-    if (BG.x1 < 0 - BG.width) {
+    if (BG.x1 <= 0 - BG.width) {
         BG.x1 = BG.width;
     }
     ctx.drawImage(background, BG.x1, BG.y, BG.width, BG.height);
 
     BG.x2 -= gameSpeed;    // keep moving the next background as well
-    if (BG.x2 < 0 - BG.width) {
+    if (BG.x2 <= 0 - BG.width) {
         BG.x2 = BG.width;
     }
     ctx.drawImage(background, BG.x2, BG.y, BG.width, BG.height);
@@ -361,6 +361,7 @@ window.addEventListener('resize', function () {
     let canvasPosition = canvas.getBoundingClientRect();
 });
 
+// Whenever restart button is clicked.
 $('#restart').click(function () {
     window.location.reload();
 });
